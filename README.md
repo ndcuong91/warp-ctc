@@ -50,6 +50,11 @@ probs.requires_grad_(True)  # tells autograd to compute gradients for probs
 cost = ctc_loss(probs, labels, probs_sizes, label_sizes)
 cost.backward()
 ```
+fix bug  
+```
+No module named 'warpctc_pytorch._warp_ctc'
+```
+https://github.com/SeanNaren/warp-ctc/pull/31#issuecomment-558114487 
 
 ## Documentation
 
