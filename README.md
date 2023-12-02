@@ -26,14 +26,22 @@ cd pytorch_binding
 python setup.py install
 ```
 
-If you try the above and get a dlopen error on OSX with anaconda3 (as recommended by pytorch):
-```bash
-cd ../pytorch_binding
-python setup.py install
-cd ../build
-cp libwarpctc.dylib /Users/$WHOAMI/anaconda3/lib
+
+fix bug  
 ```
-This will resolve the library not loaded error. This can be easily modified to work with other python installs if needed.
+No module named 'warpctc_pytorch._warp_ctc'
+```
+https://github.com/SeanNaren/warp-ctc/pull/31#issuecomment-558114487
+
+```bash
+copying the file:
+
+_warp_ctc.cpython-36m-x86_64-linux-gnu.so
+
+to
+
+warp-ctc/pytorch_binding/warpctc_pytorch/
+```
 
 Example to use the bindings below.
 
@@ -50,11 +58,6 @@ probs.requires_grad_(True)  # tells autograd to compute gradients for probs
 cost = ctc_loss(probs, labels, probs_sizes, label_sizes)
 cost.backward()
 ```
-fix bug  
-```
-No module named 'warpctc_pytorch._warp_ctc'
-```
-https://github.com/SeanNaren/warp-ctc/pull/31#issuecomment-558114487 
 
 ## Documentation
 
